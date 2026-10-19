@@ -1,9 +1,14 @@
-
-
-laden();
 const firstnames = ["Hans", "Mathias", "Tim", "Elias", "Emilia"];
 const lastnames = ["Müller", "Leis", "Mayer", "Stahl", "Koch"];
 const ages = [19, 25, 22, 16, 50];
+
+document.addEventListener("DOMContentLoaded", initladen);
+
+function initladen() {
+  laden();
+
+  document.getElementById("add-btn").addEventListener("click", add);
+}
 
 function laden() {
   const studenten = JSON.parse(localStorage.getItem("student")) || [];
@@ -13,7 +18,6 @@ function laden() {
   liste.innerHTML = "";
 
   for (let i = 0; i < studenten.length; i++) {
-    
     //div
     const div = document.createElement("div");
     div.classList.add("main-div");
@@ -34,11 +38,12 @@ function laden() {
     div.appendChild(pAge);
 
     //löschen btn
-    const deleteButton = document.createElement("button")
-    deleteButton.textContent = " Löschen"
-    deleteButton.onclick= function(){btnDelete(i)} 
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = " Löschen";
+    deleteButton.onclick = function () {
+      btnDelete(i);
+    };
     div.appendChild(deleteButton);
-    
 
     liste.appendChild(div);
   }
